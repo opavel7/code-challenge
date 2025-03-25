@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: code-challenge
+
+api:
+  external:
+    nominatim:
+      url: https://nominatim.openstreetmap.org
+    open-meteo:
+      url: https://api.open-meteo.com
+resilience4j:
+  ratelimiter:
+    instances:
+      userRateLimiter:
+        limit-for-period: 5
+        limit-refresh-period: PT1M
+        timeout-duration: 0 # ms
