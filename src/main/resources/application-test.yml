@@ -1,0 +1,8 @@
+resilience4j:
+  ratelimiter:
+    instances:
+      userRateLimiter:
+        limit-for-period: 5
+        limit-refresh-period: PT1M
+        timeout-duration: 0
+
