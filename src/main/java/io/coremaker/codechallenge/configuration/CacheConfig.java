@@ -18,6 +18,7 @@ public class CacheConfig {
                 .expireAfterWrite(1, TimeUnit.MINUTES)
                 .maximumSize(1000)
         );
+        cacheManager.setAsyncCacheMode(true);
 
         return cacheManager;
     }
