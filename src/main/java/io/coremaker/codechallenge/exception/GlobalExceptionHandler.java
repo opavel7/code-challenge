@@ -4,6 +4,7 @@ import io.coremaker.codechallenge.dto.internal.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
@@ -36,7 +37,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, HandlerMethodValidationException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, HandlerMethodValidationException.class, MissingRequestHeaderException.class})
     public ResponseEntity<ErrorResponse> handleValidationExceptions(Exception ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
