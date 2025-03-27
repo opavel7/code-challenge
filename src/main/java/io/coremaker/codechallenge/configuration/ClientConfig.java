@@ -9,23 +9,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Slf4j
 @Configuration
 public class ClientConfig {
-
-    @Value("${api.external.nominatim.url}")
-    private String nominatimUrl;
-
-    @Value("${api.external.open-meteo.url}")
-    private String openMeteoUrl;
-
     @Bean(name = "nominatimApiClient")
-    public WebClient nominatimApiClient(WebClient.Builder webClientBuilder) {
-        log.info("nominatimApiClient {}", nominatimUrl);
+    public WebClient nominatimApiClient(
+            WebClient.Builder webClientBuilder,
+            @Value("${api.external.nominatim.url}") String nominatimUrl) {
         return webClientBuilder
                 .baseUrl(nominatimUrl)
                 .build();
     }
 
     @Bean(name = "openMeteoApiClient")
-    public WebClient openMeteoApiClient(WebClient.Builder webClientBuilder) {
+    public WebClient openMeteoApiClient(
+            WebClient.Builder webClientBuilder,
+            @Value("${api.external.open-meteo.url}") String openMeteoUrl) {
         return webClientBuilder
                 .baseUrl(openMeteoUrl)
                 .build();
